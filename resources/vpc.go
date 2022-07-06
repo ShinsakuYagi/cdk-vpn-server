@@ -8,7 +8,6 @@ import (
 )
 
 func NewVPC(scope constructs.Construct, stack awscdk.Stack) (awsec2.CfnVPC, awsec2.CfnSubnet) {
-
 	vpc := awsec2.NewCfnVPC(stack, jsii.String("Vpc"), &awsec2.CfnVPCProps{
 		CidrBlock: jsii.String("10.0.0.0/16"),
 	})
