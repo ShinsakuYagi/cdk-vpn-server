@@ -9,7 +9,7 @@ import (
 func main() {
 	app := awscdk.NewApp(nil)
 
-	stack.NewVPC(app, &awscdk.StackProps{})
+	stack.NewVPNServer(app, &awscdk.StackProps{})
 
 	app.Synth(nil)
 }

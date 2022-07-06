@@ -8,23 +8,21 @@ import (
 )
 
 func NewVPC(scope constructs.Construct, stack awscdk.Stack) (awsec2.CfnVPC, awsec2.CfnSubnet) {
-	// Vpc
+
 	vpc := awsec2.NewCfnVPC(stack, jsii.String("Vpc"), &awsec2.CfnVPCProps{
 		CidrBlock: jsii.String("10.0.0.0/16"),
 	})
 
-	// PublicSubnet
 	publicSubnet := awsec2.NewCfnSubnet(stack, jsii.String("PublicSubnet"), &awsec2.CfnSubnetProps{
 		VpcId:               vpc.Ref(),
 		CidrBlock:           jsii.String("10.0.0.0/24"),
 		MapPublicIpOnLaunch: true,
 	})
 
-	// InternetGateway
 	igw := awsec2.NewCfnInternetGateway(stack, jsii.String("InternetGateway"), &awsec2.CfnInternetGatewayProps{
 		Tags: &[]*awscdk.CfnTag{{
 			Key:   jsii.String("Name"),
-			Value: jsii.String("VPNIG")}},
+			Value: jsii.String("VPNInternetGateway")}},
 	})
 
 	awsec2.NewCfnVPCGatewayAttachment(stack, jsii.String("VPCGatewayAttachment"), &awsec2.CfnVPCGatewayAttachmentProps{
@@ -32,7 +30,6 @@ func NewVPC(scope constructs.Construct, stack awscdk.Stack) (awsec2.CfnVPC, awse
 		InternetGatewayId: igw.Ref(),
 	})
 
-	// RouteTable
 	routeTable := awsec2.NewCfnRouteTable(stack, jsii.String("RouteTable"), &awsec2.CfnRouteTableProps{
 		VpcId: vpc.Ref(),
 	})

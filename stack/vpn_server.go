@@ -8,7 +8,7 @@ import (
 	"github.com/aws/jsii-runtime-go"
 )
 
-func NewVPC(scope constructs.Construct, props *awscdk.StackProps) {
+func NewVPNServer(scope constructs.Construct, props *awscdk.StackProps) {
 	var sprops awscdk.StackProps
 	if props != nil {
 		sprops = *props

@@ -26,7 +26,6 @@ const (
 var scripts []byte
 
 func NewEC2(scope constructs.Construct, stack awscdk.Stack, props *CdkEc2Props) {
-	// SecurityGroup for EC2
 	vpnServerSG := awsec2.NewCfnSecurityGroup(stack, jsii.String("SecurityGroupEC2"), &awsec2.CfnSecurityGroupProps{
 		GroupName:        jsii.String("VPNsg"),
 		GroupDescription: jsii.String("VPN SecurityGroup"),
@@ -58,7 +57,7 @@ func NewEC2(scope constructs.Construct, stack awscdk.Stack, props *CdkEc2Props) 
 			},
 		},
 	})
-	// Instance
+
 	instance := awsec2.NewCfnInstance(stack, jsii.String("EC2Instance"), &awsec2.CfnInstanceProps{
 		ImageId:          jsii.String(imageId),
 		InstanceType:     jsii.String(instanceType),
