@@ -27,8 +27,8 @@ var scripts []byte
 
 func NewEC2(scope constructs.Construct, stack awscdk.Stack, props *CdkEc2Props) {
 	vpnServerSG := awsec2.NewCfnSecurityGroup(stack, jsii.String("SecurityGroupEC2"), &awsec2.CfnSecurityGroupProps{
-		GroupName:        jsii.String("VPNsg"),
-		GroupDescription: jsii.String("VPN SecurityGroup"),
+		GroupName:        jsii.String("VPNServerSecurityGroup"),
+		GroupDescription: jsii.String("VPN server security group.(ssh,vpn)"),
 		VpcId:            props.VPC.Ref(),
 		SecurityGroupIngress: &[]*awsec2.CfnSecurityGroup_IngressProperty{
 			{
